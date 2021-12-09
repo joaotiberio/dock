@@ -1,11 +1,14 @@
+// Lista todas as pessoas. O app cria uma pessoa automaticamente ao ser iniciado caso esta não exista no banco
 GET http://localhost:3000/v1/people
 
 ###
 
+// Lista todas as contas ativas
 GET http://localhost:3000/v1/accounts
 
 ###
 
+// Cria uma conta e registra um depósito com o valor do saldo informado
 POST http://localhost:3000/v1/accounts
 content-type: application/json
 
@@ -13,10 +16,12 @@ content-type: application/json
 
 ###
 
+// Lista o saldo de uma conta ativa. Observe se o id da conta está correto na URL
 GET http://localhost:3000/v1/accounts/1/balance
 
 ###
 
+// Registra um depósito em uma conta ativa. Observe se o id da conta está correto na URL
 POST http://localhost:3000/v1/accounts/1/event/
 content-type: application/json
 
@@ -24,6 +29,7 @@ content-type: application/json
 
 ###
 
+// Registra um saque em uma conta ativa. Observe se o id da conta está correto na URL
 POST http://localhost:3000/v1/accounts/1/event/
 content-type: application/json
 
@@ -31,6 +37,7 @@ content-type: application/json
 
 ###
 
+// Bloqueia uma conta. Observe se o id da conta está correto na URL
 POST http://localhost:3000/v1/accounts/1/event/
 content-type: application/json
 
@@ -38,6 +45,7 @@ content-type: application/json
 
 ###
 
+// Lista o extrato da conta ativa obdecendo o período quando informado. Observe se o id da conta está correto na URL
 GET http://localhost:3000/v1/accounts/1/statement
 content-type: application/json
 

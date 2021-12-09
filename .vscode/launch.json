@@ -1,0 +1,23 @@
+{
+    "version": "0.1.0",
+    "configurations": [
+        {
+            "name": "Docker: Attach to Node",
+            "type": "node",
+            "request": "attach",
+            "port": 9229,
+            "address": "localhost",
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "/usr/src/app",
+            "protocol": "inspector",
+            "restart": true
+        },
+        {
+            "name": "Docker Node.js Launch",
+            "type": "docker",
+            "request": "launch",
+            "preLaunchTask": "docker-run: debug",
+            "platform": "node"
+        }
+    ]
+}

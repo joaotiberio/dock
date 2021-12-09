@@ -1,0 +1,44 @@
+GET http://localhost:3000/v1/people
+
+###
+
+GET http://localhost:3000/v1/accounts
+
+###
+
+POST http://localhost:3000/v1/accounts
+content-type: application/json
+
+{"personId": 1, "balance": 10, "dailyWithdrawLimit": 10, "type": 1}
+
+###
+
+GET http://localhost:3000/v1/accounts/1/balance
+
+###
+
+POST http://localhost:3000/v1/accounts/1/event/
+content-type: application/json
+
+{"type":"deposit", "amount":10}
+
+###
+
+POST http://localhost:3000/v1/accounts/1/event/
+content-type: application/json
+
+{"type":"withdraw", "amount":5}
+
+###
+
+POST http://localhost:3000/v1/accounts/1/event/
+content-type: application/json
+
+{"type":"freeze"}
+
+###
+
+GET http://localhost:3000/v1/accounts/1/statement
+content-type: application/json
+
+{"periodStart":"2021-12-01", "periodEnd": "2021-12-10"}

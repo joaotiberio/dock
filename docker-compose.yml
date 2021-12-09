@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  app_dock:
+    container_name: app_dock
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules # Remove this if you have pure JS dependencies
+    environment:
+      DB_SCHEMA: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASS}
+      DB_HOST: ${DB_HOST}
+    depends_on:
+      - pg_dock
+    networks:
+      - app-connect
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+
+  pg_dock:
+    container_name: pg_dock
+    image: postgres:14
+    restart: unless-stopped
+    volumes:
+      - pg-dock-data:/data
+    environment: 
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS} 
+    networks:
+      - app-connect
+    ports: 
+      - '5432:5432'
+
+volumes:
+  pg-dock-data:
+
+networks:
+  app-connect:
+      driver: bridge
